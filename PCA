@@ -11,3 +11,14 @@ BinaryDiagnosis[Diagnosis == 'M'] = 0
 BinaryDiagnosis[Diagnosis == 'B'] = 1
 signal[:,1] = BinaryDiagnosis
 signal = signal.astype(np.float)
+for i in range(2,np.shape(signal)[1]):
+    signal[:,i]=(signal[:,i]-np.mean(signal[:,i]))/np.sqrt(np.var(signal[:,i]))
+    
+#Definición de la matriz de covarianza para 2 arreglos
+def matrizCovarianza(x,y):
+    matrizCovarianza=np.zeros((2,2))
+    matrizCovarianza[0,0]=np.mean(x*x)-np.mean(x)*np.mean(x)
+    matrizCovarianza[0,1]=np.mean(x*y)-np.mean(x)*np.mean(y)
+    matrizCovarianza[1,0]=matrizCovarianza[0,1]
+    matrizCovarianza[1,1]=np.mean(y*y)-np.mean(y)*np.mean(y)
+    return matrizCovarianza
