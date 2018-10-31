@@ -1,0 +1,13 @@
+import numpy as np
+import matplotlib.pyplot as plt
+signal = np.loadtxt('WDBC.dat', dtype=str, delimiter=',')
+signal.shape
+print (signal)
+
+#Convertir M/B a 1/0
+Diagnosis = signal[:,1]
+BinaryDiagnosis = np.zeros(Diagnosis.shape,dtype = float)
+BinaryDiagnosis[Diagnosis == 'M'] = 0
+BinaryDiagnosis[Diagnosis == 'B'] = 1
+signal[:,1] = BinaryDiagnosis
+signal = signal.astype(np.float)
