@@ -80,3 +80,32 @@ for i in range(np.shape(signal)[0]):
         pacienteMaligno+=1
     else:
         pacienteBenigno+=1    
+
+
+#Guarda las proyecciones de los pacientes malignos solamente
+PC1maligno=np.zeros((pacienteMaligno,1))
+PC2maligno=np.zeros((pacienteMaligno,1))
+pa=0
+for i in range(np.shape(signal)[0]):
+    if signal[i,1]==1:
+        PC1maligno[pa]=proyeccionesPC1[i]
+        PC2maligno[pa]=proyeccionesPC2[i]
+        pa+=1
+
+#Guarda las proyecciones de los pacientes benignos solamente
+PC1beningo=np.zeros((pacienteBenigno,1))
+PC2beningo=np.zeros((pacienteBenigno,1))
+be=0
+for i in range(np.shape(signal)[0]):
+    if signal[i,1]==0:
+        PC1beningo[be]=proyeccionesPC1[i]
+        PC2beningo[be]=proyeccionesPC2[i]
+        be+=1
+
+
+plt.scatter(PC1maligno,PC2maligno,color="red",label="maligno")
+plt.scatter(PC1beningo,PC2beningo,color="blue",label="beningo")
+plt.legend()
+plt.xlabel("PC1")
+plt.ylabel("PC2")
+plt.show()
