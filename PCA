@@ -54,3 +54,29 @@ print("El componente con valor propio",valoresPropios[1],"y vector propio")
 print(vectoresPropios[1],"\n")
 print("Segun la informacion estos los componentes de radio y textura","\n")
 
+
+#Creacion de los arreglos de las proyecciones en las componentes principales
+proyeccionesPC1=np.zeros((np.shape(signal)[0],1))
+proyeccionesPC2=np.zeros((np.shape(signal)[0],1))
+
+#Calculo de las proyecciones, lo hice con doble for ya que np.dot tendria encuenta la posicion 0 y 1 que es el ID y si es benigno o maligno
+for i in range(np.shape(signal)[0]):
+    for j in range(2,np.shape(signal)[1]):
+        proyeccionesPC1[i]+=signal[i,j]*vectoresPropios[0][j-2]
+        proyeccionesPC2[i]+=signal[i,j]*vectoresPropios[1][j-2]
+
+
+#Grafica de las proyecciones principales
+plt.scatter(proyeccionesPC1,proyeccionesPC2,color="red")
+plt.xlabel("PC1")
+plt.ylabel("PC2")
+plt.show()
+
+#Cuenta cuantos pacientes malignos o benignos hay           
+pacienteMaligno=0
+pacienteBenigno=0
+for i in range(np.shape(signal)[0]):
+    if signal[i,1]==1:
+        pacienteMaligno+=1
+    else:
+        pacienteBenigno+=1    
