@@ -22,3 +22,15 @@ def matrizCovarianza(x,y):
     matrizCovarianza[1,0]=matrizCovarianza[0,1]
     matrizCovarianza[1,1]=np.mean(y*y)-np.mean(y)*np.mean(y)
     return matrizCovarianza
+#Matriz de covarianza de relación de las 30 
+matrizCovFinal=np.zeros((30,30))
+
+#Ciclo Que recorre los datos, calcula la covarianza y los guarda en la matriz general
+for i in range(2,np.shape(signal)[1]):
+    for j in range(2,np.shape(signal)[1]):
+        if i==j:
+            matrizCovFinal[i-2,j-2]=matrizCovarianza(signal[:,i],signal[:,j])[0,0]
+        else: 
+            matrizCovFinal[i-2,j-2]=matrizCovarianza(signal[:,i],signal[:,j])[0,1]
+            matrizCovFinal[j-2,i-2]=matrizCovFinal[i-2,j-2]
+        
