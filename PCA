@@ -40,3 +40,17 @@ print("La matriz de covarianza es","\n", matrizCovFinal,"\n")
 #Calculo de los valores propios y los vectores propios
 valoresPropios=np.linalg.eig(matrizCovFinal)[0]
 vectoresPropios=np.linalg.eig(matrizCovFinal)[1]
+
+#Impresion de cada valor propio y cada vector propios
+for i in range(np.shape(valoresPropios)[0]):
+    print("El valor propio",i,"es", valoresPropios[i],"con el vector propio")
+    print(vectoresPropios[i],"\n")
+
+#Impresion de los componentes principales 
+print("De acuerdo con esto tenemos que los componentes principales son")
+print("El componente con valor propio",valoresPropios[0],"y vector propio")
+print(vectoresPropios[0],"\n")
+print("El componente con valor propio",valoresPropios[1],"y vector propio")
+print(vectoresPropios[1],"\n")
+print("Segun la informacion estos los componentes de radio y textura","\n")
+
