@@ -34,3 +34,9 @@ for i in range(2,np.shape(signal)[1]):
             matrizCovFinal[i-2,j-2]=matrizCovarianza(signal[:,i],signal[:,j])[0,1]
             matrizCovFinal[j-2,i-2]=matrizCovFinal[i-2,j-2]
         
+#Impresion de la matriz de covarianza de dimension 30 por 30 
+print("La matriz de covarianza es","\n", matrizCovFinal,"\n")
+
+#Calculo de los valores propios y los vectores propios
+valoresPropios=np.linalg.eig(matrizCovFinal)[0]
+vectoresPropios=np.linalg.eig(matrizCovFinal)[1]
